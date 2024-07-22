@@ -1,0 +1,15 @@
+{
+    "header": {
+        "title": "Tech Insights",
+        "nav": [
+            { "text": "Home", "url": "/" },
+            { "text": "Posts", "url": "/posts/" },
+            { "text": "About", "url": "/about.html" },
+            { "text": "Contact", "url": "/contact.html" }
+        ]
+    },
+    "footer": {
+        "text": "&copy; 2024 Tech Insights"
+    }
+}
+

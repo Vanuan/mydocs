@@ -45,7 +45,7 @@ async function renderTemplate(templatePath, context) {
 }
 
 // Process markdown file
-async function processMarkdownFile(inputPath, outputPath, templatePath) {
+async function processMarkdownFile(inputPath, outputPath, templatePath, siteData) {
     const content = await fs.readFile(inputPath, 'utf8');
     const { data, content: markdownContent } = matter(content);
 
@@ -60,6 +60,7 @@ async function processMarkdownFile(inputPath, outputPath, templatePath) {
 
     const templateContext = {
         ...data,
+        ...siteData,
         content: htmlContent
     };
 
@@ -75,12 +76,15 @@ async function build() {
     await copyStatic();
     await registerPartials();
 
+    // Load site data
+    const siteData = JSON.parse(await fs.readFile('data/site.json', 'utf8'));
+
     // Render main index page
-    await processMarkdownFile('content/index.md', 'dist/index.html', 'templates/main.hbs');
+    await processMarkdownFile('content/index.md', 'dist/index.html', 'templates/main.hbs', siteData);
 
     // Render other pages
-    await processMarkdownFile('content/about.md', 'dist/about.html', 'templates/main.hbs');
-    await processMarkdownFile('content/contact.md', 'dist/contact.html', 'templates/main.hbs');
+    await processMarkdownFile('content/about.md', 'dist/about.html', 'templates/main.hbs', siteData);
+    await processMarkdownFile('content/contact.md', 'dist/contact.html', 'templates/main.hbs', siteData);
 
     // Render posts
     const postsDir = 'content/posts';
@@ -89,13 +93,14 @@ async function build() {
 
     for (const file of postFiles) {
         const postName = path.parse(file).name;
-        const data = await processMarkdownFile(path.join(postsDir, file), `dist/posts/${postName}.html`, 'templates/post.hbs');
+        const data = await processMarkdownFile(path.join(postsDir, file), `dist/posts/${postName}.html`, 'templates/post.hbs', siteData);
         posts.push({ title: data.title, url: `/posts/${postName}.html` });
     }
 
     // Render posts index
     const postsIndexContext = {
-        posts
+        posts,
+        ...siteData
     };
     const postsIndexHtml = await renderTemplate('templates/posts-index.hbs', postsIndexContext);
     await ensureDir('dist/posts'); // Ensure the directory exists before writing
@@ -107,4 +112,3 @@ build().catch(err => {
     console.error(err);
     process.exit(1);
 });
-

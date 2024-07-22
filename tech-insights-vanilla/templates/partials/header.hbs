@@ -1,11 +1,10 @@
 <header>
-    <a href="/"><h1>Tech Insights</h1></a>
+    <a href="/"><h1>{{header.title}}</h1></a>
     <nav>
         <ul>
-            <li><a href="/posts/">Posts</a></li>
-            <li><a href="/about.html">About</a></li>
-            <li><a href="/contact.html">Contact</a></li>
+            {{#each header.nav}}
+                <li><a href="{{this.url}}">{{this.text}}</a></li>
+            {{/each}}
         </ul>
     </nav>
 </header>
-
