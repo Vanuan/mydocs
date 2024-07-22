@@ -1,0 +1,11 @@
+<!-- templates/posts-index.hbs -->
+{{#> base}}
+  {{#*inline "content"}}
+    <h2>Posts</h2>
+    <ul>
+        {{#each posts}}
+        <li><a href="{{url}}">{{title}}</a></li>
+        {{/each}}
+    </ul>
+  {{/inline}}
+{{/base}}
