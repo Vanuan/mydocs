@@ -11,8 +11,12 @@ hero:
       text: Pelican to Astro
       link: /pelican-to-astro
     - theme: alt
-      text: Vitepress
-      link: /vitepress
+      text: Pelican to Vitepress
+      link: /pelican-to-vitepress
+    - theme: alt
+      text: Vitepress overview
+      link: /vitepress-overview
+
 
 features:
   - title: Content format and tree structure

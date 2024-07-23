@@ -8,21 +8,38 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: 'Migration guides', link: '/pelican-to-astro' }
     ],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: 'Overview',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'Astro', link: '/astro-overview' },
+          { text: 'Pelican', link: '/pelican-overview' },
+          { text: 'Vitepress', link: '/vitepress-overview' }
+        ]
+      },
+      {
+        text: 'Example Content',
+        items: [
+          { text: 'Tech Insights Vanilla', link: '/example-tech-insights-vanilla' },
+          { text: 'Tech Insights Pelican', link: '/example-tech-insights-pelican' },
+          { text: 'Tech Insights Vitepress', link: '/example-tech-insights-vitepress' },
+          { text: 'Tech Insights Astro', link: '/example-tech-insights-astro' },
+        ]
+      },
+      {
+        text: 'Migration Guides',
+        items: [
+          { text: 'Pelican to Astro', link: '/pelican-to-astro' },
+          { text: 'Pelican to Vitepress', link: '/pelican-to-vitepress' }
         ]
       }
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/astrolicious/astro-tips.dev/issues/190' }
     ]
   }
 })
